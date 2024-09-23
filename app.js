@@ -1,11 +1,11 @@
-const fs = require("fs");
+const EventEmitter = require("events");
 
-// Synchronous Method (Bad Practice)
-// const file = fs.readdirSync("./");
-// console.log(file);
+const emitter = new EventEmitter();
 
-// Asynchronous Method (Good Practice)
-fs.readdir("./", function (err, file) {
-  if (err) console.log("Error", err);
-  else console.log("Result", file);
+//Register a Listener
+emitter.on("messageLogged", function () {
+  console.log("Listener Called");
 });
+
+//Raise an event
+emitter.emit('messageLogged');
