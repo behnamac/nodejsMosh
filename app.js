@@ -1,7 +1,11 @@
-const os=require('os');
+const fs = require("fs");
 
-const freeMemory=os.freemem();
-const totalMemory=os.totalmem();
+// Synchronous Method (Bad Practice)
+// const file = fs.readdirSync("./");
+// console.log(file);
 
-console.log(`Free Memory: ${freeMemory}`);
-console.log(`Total Memory: ${totalMemory}`);
+// Asynchronous Method (Good Practice)
+fs.readdir("./", function (err, file) {
+  if (err) console.log("Error", err);
+  else console.log("Result", file);
+});
